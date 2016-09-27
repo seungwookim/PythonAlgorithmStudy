@@ -12,6 +12,7 @@ in the i-th bottle after all pouring operations are finished
 """
 
 import datetime as dt
+import math
 
 
 class KiwiJuiceEasy:
@@ -36,7 +37,20 @@ class KiwiJuiceEasy:
         print("time cost : {0}".format(end_time - start_time))
         return bottles
 
+    def pour_v2(self, capacities, bottles, fromIds, toIds):
+        start_time = dt.datetime.now()
+        for x in range(0, len(fromIds)):
+            sum = bottles[fromIds[x]] + bottles[toIds[x]]
+            bottles[toIds[x]] = min(sum, capacities[toIds[x]])
+            bottles[fromIds[x]] = sum - bottles[toIds[x]]
 
-result = KiwiJuiceEasy().pour_v1([7,6,7,5,3,5,6,4,2,2,6], [3,3,5,2,1,3,2,1,0,0,2], [1,5,7,9], [8,2,3,4])
+        end_time = dt.datetime.now()
+        print("time cost : {0}".format(end_time - start_time))
+        return bottles
 
-print("remained amount : {0}".format(result))
+
+result1 = KiwiJuiceEasy().pour_v1([7,6,7,5,3,5,6,4,2,2,6], [3,3,5,2,1,3,2,1,0,0,2], [1,5,7,9], [8,2,3,4])
+result2 = KiwiJuiceEasy().pour_v2([7,6,7,5,3,5,6,4,2,2,6], [3,3,5,2,1,3,2,1,0,0,2], [1,5,7,9], [8,2,3,4])
+
+print("remained amount : {0}".format(result1))
+print("remained amount : {0}".format(result2))
