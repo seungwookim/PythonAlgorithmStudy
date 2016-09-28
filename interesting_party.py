@@ -18,10 +18,11 @@ class IntrestParty :
         self.first = first
         self.second = second
 
-    def max_invite_num_v1(self):
+    def run_v1(self):
         """
-        my own answer - not no the book
+        my own answer - not on the book
         let's see.. who's answer is faster...
+        almost 3 times slower why?
         :return:
         """
         start_time = dt.datetime.now()
@@ -37,7 +38,7 @@ class IntrestParty :
 
         for idx, key in enumerate(second_key_set):
             if(key in dict):
-                dict[key] = (len(filter(lambda x:x==key, self.second)))
+                dict[key] += (len(filter(lambda x:x==key, self.second)))
             else :
                 dict[key] = int((len(filter(lambda x: x == key, self.second))))
 
@@ -48,7 +49,33 @@ class IntrestParty :
         print("time cost : {0}".format(end_time - start_time))
 
 
+    def run_v2(self):
+        """
+        solution on the book
+        :return:
+        """
+        start_time = dt.datetime.now()
+        dic = {}
+        for key in self.first :
+            dic[key] = 0
+            dic[key] = 0
+
+        for idx in range(0, len(self.first)) :
+            dic[self.first[idx]] = dic[self.first[idx]] + 1
+            dic[self.second[idx]] = dic[self.second[idx]] + 1
+
+        ans = 0
+
+        for key in dic.keys():
+            ans = max(ans , dic[key])
+
+        print(ans)
+
+        end_time = dt.datetime.now()
+        print("time cost : {0}".format(end_time - start_time))
 
 
-ip = IntrestParty([1,3,2,1,3,1,2,3,2,2,3,3,4,1,2,3], [2,1,3,2,1,2,3,2,1,3,2,1,2,2,3,1])
-ip.max_invite_num_v1()
+ip = IntrestParty([1,3,2,1,3,1,2,3,2,2,3,3,4,1,2,3,1,3,2,1,3,1,2,3,2,2,3,3,4,1,2,3,1,3,2,1,3,1,2,3,2,2,3,3,4,1,2,3,1,3,2,1,3,1,2,3,2,2,3,3,4,1,2,3],
+                  [2,1,3,2,1,2,3,1,1,3,2,1,2,2,3,1,2,1,3,2,1,2,3,1,1,3,2,1,2,2,3,1,2,1,3,2,1,2,3,1,1,3,2,1,2,2,3,1,2,1,3,2,1,2,3,1,1,3,2,1,2,2,3,1])
+ip.run_v1()
+ip.run_v2()
