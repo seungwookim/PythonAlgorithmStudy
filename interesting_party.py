@@ -37,9 +37,9 @@ class IntrestParty :
 
         for idx, key in enumerate(second_key_set):
             if(key in dict):
-                dict[key] = (len(filter(lambda x:x==key, self.first)))
+                dict[key] = (len(filter(lambda x:x==key, self.second)))
             else :
-                dict[key] = int((len(filter(lambda x: x == key, self.first))))
+                dict[key] = int((len(filter(lambda x: x == key, self.second))))
 
         result = max(dict.iterkeys(), key=(lambda key : dict[key]))
         print("inviting {0} people interest in {1}".format(dict[result] , result))
