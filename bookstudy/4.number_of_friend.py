@@ -1,5 +1,3 @@
-
-
 def count_friend(f_list):
     ans = 0
     n = len(f_list[0])
